@@ -1,8 +1,8 @@
+let alphabet = "abcdefghijklmnopqrstuvwxyz";
+
 function caesarCypher(string) {
   return numbersToString(stringToNumbers(string));
 }
-
-let alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 function isLetter(letter) {
   return letter.toUpperCase() != letter.toLowerCase() ? true : false;
@@ -33,9 +33,13 @@ function numbersToString(number) {
   let result = [];
 
   for (let i = 0; i < number.length; i++) {
-    isNumber(number[i])
-      ? result.push(alphabet[number[i]])
-      : result.push(number[i]);
+    if (isNumber(number[i]) && number[i] !== 26) {
+      result.push(alphabet[number[i]]);
+    } else if (number[i] === 26) {
+      result.push(alphabet[0]);
+    } else {
+      result.push(number[i]);
+    }
   }
 
   return result.join("");
